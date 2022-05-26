@@ -102,8 +102,8 @@ resource "azurerm_user_assigned_identity" "acr_identity" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "settings" {
-  count = var.log_analytics_workspace_id == null ? 0 : 1
-  name  = "DiagnosticsSettings"
+  //count = var.log_analytics_workspace_id == null ? 0 : 1
+  name = "DiagnosticsSettings"
   # provider                   = azurerm.acr
   target_resource_id         = azurerm_container_registry.acr.id
   log_analytics_workspace_id = var.log_analytics_workspace_id
