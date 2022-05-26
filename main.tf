@@ -47,7 +47,7 @@ resource "azurerm_resource_group" "p_acr_acr" {
 }
 
 module "container_registry" {
-  source = "./modules/container_registry"
+  source = "./modules/container-registry"
   name   = var.name
   tags   = local.tags
 

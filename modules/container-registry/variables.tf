@@ -31,7 +31,7 @@ variable "sku" {
   default     = "Basic"
 
   validation {
-    condition = contains(["Basic", "Standard", "Premium"], var.sku)
+    condition     = contains(["Basic", "Standard", "Premium"], var.sku)
     error_message = "The container registry sku is invalid."
   }
 }
@@ -47,7 +47,7 @@ variable "georeplication_locations" {
 variable "log_analytics_workspace_id" {
   description = "(Optional) Specify a log analytics workspace to connect with the container registry"
   type        = string
-  default = null
+  default     = null
 }
 
 variable "log_analytics_retention_days" {

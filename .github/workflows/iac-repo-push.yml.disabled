@@ -1,0 +1,39 @@
+name: 'IaC: Push'
+
+on:
+  push:
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Clone repository for analysis
+        uses: actions/checkout@v2
+        with:
+          # ref: ${{ github.sha }}
+          # path: src
+          fetch-depth: 0
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.2.0
+
+      - name: Run terraform fmt check
+        run: terraform fmt -check -diff -recursive .
+
+      # - name: Setup Python for Pre-Commits
+      #   uses: actions/setup-python@v2
+
+      # - name: Setup upterm session
+      #   uses: lhotari/action-upterm@v1
+      #   with:
+      #     ## limits ssh access and adds the ssh public key for the user which triggered the workflow
+      #     limit-access-to-actor: false
+
+      # - name: Pre-Commit Checks
+      #   uses: pre-commit/action@v2.0.3
+      #   with:
+      #     token: ${{ secrets.GH_TOKEN }}
